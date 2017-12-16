@@ -1,4 +1,9 @@
 require "rails_helper"
+require "spec_helper"
+
+def setup
+	@base_title = "Deliver"
+end
 
 # spec/support/assert_select_root.rb
 
