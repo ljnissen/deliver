@@ -19,12 +19,12 @@ end
 
 RSpec.describe "home page", :type => :request do
 	it "should get home" do
-		get "/static_pages/home"
+		get "/"
 		assert_response :success
 	end
 
 	it "should get home ii" do
-		get "/static_pages/home"
+		get "/"
 		assert_select "title", "Deliver"
 	end
 	

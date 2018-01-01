@@ -7,12 +7,12 @@ end
 
 RSpec.describe "about page", :type => :request do
 	it "should get about" do
-		get "/static_pages/about"
+		get "/about"
 		assert_response :success
 	end
 
 	it "should get home ii" do
-		get "/static_pages/about"
+		get "/about"
 		assert_select "title", "About | Deliver"
 	end
 	

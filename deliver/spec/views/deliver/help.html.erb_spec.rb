@@ -9,12 +9,12 @@ RSpec.describe "help page", :type => :request do
 
 
 	it "should get help" do
-		get "/static_pages/help"
+		get "/help"
 		assert_response :success
 	end
 
 	it "should get home ii" do
-		get "/static_pages/help"
+		get "/help"
 		assert_select "title", "Help | Deliver"
 	end
 end
