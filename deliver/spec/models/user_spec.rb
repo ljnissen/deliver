@@ -50,4 +50,19 @@ RSpec.describe "model", :type => :request do
 	      expect(@user).not_to be_valid, "#{invalid_address.inspect} should be invalid"
     	end
   	end
+
+  	it "email addresses should be unique" do
+  		@user = User.new(name: "Example User", email: "user@example.com")
+	    duplicate_user = @user.dup
+	    @user.save
+	    expect(duplicate_user).not_to be_valid
+  	end
+
+  	it "email addresses should be case insensitive" do
+  		@user = User.new(name: "Example User", email: "user@example.com")
+  		duplicate_user = @user.dup
+	    duplicate_user.email = @user.email.upcase
+	    @user.save
+	    expect(duplicate_user).not_to be_valid
+  	end
 end
