@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.7.1'
 
 gem 'bcrypt', '3.1.11'
+
+gem 'assert_difference'
 # Use sqlite3 as the database for Active Record
 
 gem 'bootstrap-sass', '3.3.7'

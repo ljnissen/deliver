@@ -30,6 +30,12 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
 
   config.include Rails.application.routes.url_helpers
+
+  config.include AssertDifference
+
+  def assert_no_difference(code, &block)
+    assert_difference code, 0, &block
+  end
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
