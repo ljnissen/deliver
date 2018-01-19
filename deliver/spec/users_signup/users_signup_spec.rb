@@ -29,6 +29,16 @@ require 'spec_helper'
 #  end
 #end
 
+module AssertSelectRoot
+  def document_root_element
+    html_document.root
+  end
+end
+
+RSpec.configure do |config|
+    config.include AssertSelectRoot, :type => :request
+end
+
 RSpec.describe "UsersSignups", type: :request do
   describe "signing up with invalid information" do
     it "should not work and should go back to the signup form" do
@@ -57,4 +67,36 @@ RSpec.describe "UsersSignups", type: :request do
       end.to change{ User.count }.from(0).to(1)
     end
   end
+end
+
+
+RSpec.describe "signup_path", :type => :request do
+  it "should get users/new" do
+    get signup_path
+    assert_template 'users/new'
+    
+  end
+
+  it "should get CSS id for error explanation" do
+    get signup_path
+    post users_path, user: { 
+          name:                  "",
+          email:                 "user@triculi",
+          password:              "buajaja",
+          password_confirmation: "juababa" 
+        }
+    assert_select 'div#error_explanation'
+  end
+
+  it "should get CSS class for field with errors" do
+    get signup_path
+    post users_path, user: { 
+          name:                  "",
+          email:                 "user@triculi",
+          password:              "buajaja",
+          password_confirmation: "juababa" 
+        }
+    assert_select 'div.field_with_errors'
+  end
+  
 end
