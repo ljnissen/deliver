@@ -98,5 +98,40 @@ RSpec.describe "signup_path", :type => :request do
         }
     assert_select 'div.field_with_errors'
   end
+
+  it "should render show template after successful signup" do
+    get signup_path
+        post users_path, user: { 
+          name:                  "Julito Triculito",
+          email:                 "triculito@mail.com",
+          password:              "worldtriculi",
+          password_confirmation: "worldtriculi"
+        }
+    expect(response.code).to eq("302")
+  end
+
+  it "should render show template after successful signup ii" do
+    get signup_path
+        post users_path, user: { 
+          name:                  "Julito Triculito",
+          email:                 "triculito@mail.com",
+          password:              "worldtriculi",
+          password_confirmation: "worldtriculi"
+        }
+    #should render_template('users/show')
+  end
+
+  
+
+  it "should render show template after successful signup iii" do
+    get signup_path
+        post users_path, user: { 
+          name:                  "Julito Triculito",
+          email:                 "triculito@mail.com",
+          password:              "worldtriculi",
+          password_confirmation: "worldtriculi"
+        }
+    expect(response).to redirect_to('/users/1')
+  end
   
 end
