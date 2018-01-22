@@ -118,7 +118,7 @@ RSpec.describe "signup_path", :type => :request do
           password:              "worldtriculi",
           password_confirmation: "worldtriculi"
         }
-    #should render_template('users/show')
+    #expect(response).to render_template(user_path(user))
   end
 
   
