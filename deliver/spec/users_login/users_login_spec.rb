@@ -1,6 +1,10 @@
 require 'rails_helper'
 require 'spec_helper'
 
+def setup
+    @user = users(:michael)
+end
+
 RSpec.describe "signup_path", :type => :request do
   it "login with invalid information" do
     get login_path
