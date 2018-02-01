@@ -36,6 +36,11 @@ RSpec.configure do |config|
   def assert_no_difference(code, &block)
     assert_difference code, 0, &block
   end
+
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
+  
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

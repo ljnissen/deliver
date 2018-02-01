@@ -74,7 +74,6 @@ RSpec.describe "signup_path", :type => :request do
   it "should get users/new" do
     get signup_path
     assert_template 'users/new'
-    
   end
 
   it "should get CSS id for error explanation" do
@@ -132,6 +131,17 @@ RSpec.describe "signup_path", :type => :request do
           password_confirmation: "worldtriculi"
         }
     expect(response).to redirect_to('/users/1')
+  end
+
+  it "should be logged in after successful signup" do
+    get signup_path
+        post users_path, user: { 
+          name:                  "Julito Triculito",
+          email:                 "triculito@mail.com",
+          password:              "worldtriculi",
+          password_confirmation: "worldtriculi"
+        }
+    assert is_logged_in?
   end
   
 end
