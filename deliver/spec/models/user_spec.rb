@@ -1,7 +1,12 @@
 require "rails_helper"
 require "spec_helper"
 
+
+
 RSpec.describe "model", :type => :request do
+
+
+
 	it "should be valid" do
 		@user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
 		expect(@user).to be_valid
@@ -87,7 +92,7 @@ RSpec.describe "model", :type => :request do
 	end
 
 	#it "authenticated? should return false for a user with nil digest" do
-	#	expect((@user.authenticated?(''))).to be_empty?
+	#	expect(@user.authenticated?('')).to be_falsy
 	#end
 
 end
