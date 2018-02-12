@@ -49,4 +49,11 @@ RSpec.describe "signup_path", :type => :request do
 
     end
   end
+
+  it "login with remembering" do
+    @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+    cookies['remember_token']
+    log_in_as(@user, remember_me: '1')
+    assert(cookies['remember_token']).not_to be_empty
+  end
 end
