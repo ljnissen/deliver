@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 def setup
-    @user = users(:michael)
+    @user = users(:lj)
 end
 
 RSpec.describe "signup_path", :type => :request do
@@ -49,11 +49,24 @@ RSpec.describe "signup_path", :type => :request do
 
     end
   end
+end
+
+RSpec.describe "integration tests", type: :request do
 
   it "login with remembering" do
     @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
-    cookies['remember_token']
     log_in_as(@user, remember_me: '1')
-    assert(cookies['remember_token']).not_to be_empty
+    # The following test is wrong because it tests nil == nil
+    expect(cookies['remember_token']).to equal @user.remember_token
+  end
+
+   it "login without remembering" do
+    @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
+    # Log in to set the cookie.
+    log_in_as(@user, remember_me: '1')
+    # Log in again and verify that the cookie is deleted.
+    log_in_as(@user, remember_me: '0')
+    # The following test is wrong because it tests nil == nil
+    expect(cookies['remember_token']).to be_nil
   end
 end
