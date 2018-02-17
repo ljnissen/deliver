@@ -12,4 +12,4 @@ two:
 lj:
 	name: LJ Example
 	email: lj@example.com
-	password_digest: <%= User.digest('password')%>
+	password_digest: <%= User.digest('password') %>
