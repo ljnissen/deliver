@@ -6,8 +6,8 @@ def setup
 end
 
 
-RSpec.describe "index_path", :type => :request do
-	it "index including pagination" do |variable|
-		log_in_as(@user)
-	end
-end
+#RSpec.describe "index_path", :type => :request do
+#	it "index including pagination" do
+#		log_in_as(@user)
+#	end
+#end
